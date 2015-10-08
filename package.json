@@ -1,0 +1,52 @@
+{
+  "name": "dscopyjs",
+  "version": "1.0.0",
+  "description": "Dscopy.js is an Datasource copy library for JavaScript and Node.js. It features any datasource to any datasource copier.",
+  "author": "Ashwin Rayaprolu <ashwin.rayaprolu@gmail.com> (https://github.com/ashwinrayaprolu1984)",
+  "contributors": [
+    "Ashwin Rayaprolu (https://github.com/ashwinrayaprolu1984)"
+  ],
+  "homepage": "http://dscopyjs.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashwinrayaprolu1984/dscopyjs.git"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "Datasource",
+    "Copy",
+    "Tables"
+  ],
+  "dependencies": {
+    "tiny-emitter": "^1.0.0",
+    "typed-function": "^0.10.1"
+  },
+  "devDependencies": {
+    "glob": "^5.0.5",
+    "gulp": "^3.8.11",
+    "gulp-util": "^3.0.4",
+    "istanbul": "^0.3.13",
+    "mkdirp": "^0.5.0",
+    "mocha": "^2.2.4",
+    "q": "^1.2.0",
+    "seed-random": "^2.2.0",
+    "tar": "^2.1.0",
+    "uglify-js": "^2.4.20",
+    "underscore": "^1.8.3",
+    "webpack": "^1.8.9"
+  },
+  "main": "./index",
+  "scripts": {
+    "build": "gulp",
+    "watch": "gulp watch",
+    "docs": "gulp docs",
+    "test": "mocha test --recursive",
+    "coverage": "istanbul cover _mocha -- test --recursive; echo \"\nCoverage report is available at ./coverage/lcov-report/index.html\""
+  },
+  "bin": {
+    "dscopyjs": "./bin/cli.js"
+  },
+  "engines": {
+    "node": ">= 0.1"
+  }
+}

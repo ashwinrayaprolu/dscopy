@@ -1,0 +1,29 @@
+{
+  "name": "components/dscopyjs",
+  "description": "dscopy.js is an extensive dscopy library for JavaScript and Node.js. It features a flexible expression parser and offers an integrated solution to work with numbers, big numbers, complex numbers, units, and matrices.",
+  "type": "component",
+  "homepage": "http://dscopyjs.org",
+  "license": "Apache 2.0",
+  "support": {
+      "issues": "https://github.com/ashwinrayaprolu1984/dscopyjs/issues",
+      "source": "https://github.com/ashwinrayaprolu1984/dscopyjs/",
+      "docs": "http://dscopyjs.org/docs"
+  },
+  "authors": [
+      {
+          "name": "Ashwin Rayaprolu",
+          "email": "ashwin.rayaprolu@gmail.com"
+      }
+  ],
+  "extra": {
+      "component": {
+          "scripts": [
+              "./dist/dscopy.js"
+          ],
+          "files": [
+              "./dist/dscopy.min.js",
+              "./dist/dscopy.map"
+          ]
+      }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "dscopyjs",
+  "repo": "ashwinrayaprolu1984/dscopyjs",
+  "description": "dscopy.js is an extensive dscopy library for JavaScript and Node.js. It features a flexible expression parser and offers an integrated solution to work with numbers, big numbers, complex numbers, units, and matrices.",
+  "version": "2.3.0",
+  "main": "dist/dscopy.min.js",
+  "license": "Apache-2.0",
+  "keywords": [
+    "dscopy",
+    "dscopyematics",
+    "functions",
+    "numeric",
+    "parser",
+    "expression",
+    "number",
+    "bignumber",
+    "complex",
+    "matrix",
+    "unit"
+  ],
+  "scripts": [
+    "dist/dscopy.min.js"
+  ]
+}
