@@ -1,7 +1,7 @@
 {
   "name": "dscopyjs",
   "version": "1.0.0",
-  "description": "Dscopy.js is an Datasource copy library for JavaScript and Node.js. It features any datasource to any datasource copier.",
+  "description": "dscopy.js is an Datasource copy library for JavaScript and Node.js. It features any datasource to any datasource copier. This take take any datasource as input and create insert/delete/update statements that can be run on any target datasource",
   "author": "Ashwin Rayaprolu <ashwin.rayaprolu@gmail.com> (https://github.com/ashwinrayaprolu1984)",
   "contributors": [
     "Ashwin Rayaprolu (https://github.com/ashwinrayaprolu1984)"

@@ -1,7 +1,7 @@
 {
   "name": "dscopyjs",
   "repo": "ashwinrayaprolu1984/dscopyjs",
-  "description": "dscopy.js is an extensive dscopy library for JavaScript and Node.js. It features a flexible expression parser and offers an integrated solution to work with numbers, big numbers, complex numbers, units, and matrices.",
+  "description": "dscopy.js is an Datasource copy library for JavaScript and Node.js. It features any datasource to any datasource copier. This take take any datasource as input and create insert/delete/update statements that can be run on any target datasource",
   "version": "2.3.0",
   "main": "dist/dscopy.min.js",
   "license": "Apache-2.0",

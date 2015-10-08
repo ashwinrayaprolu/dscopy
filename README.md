@@ -2,16 +2,12 @@
 
 [http://dscopyjs.org](http://dscopyjs.org)
 
-dscopy.js is an extensive dscopy library for JavaScript and Node.js.
-It features a flexible expression parser and offers an integrated solution
-to work with numbers, big numbers, complex numbers, units, and matrices.
-Powerful and easy to use.
-
+dscopy.js is an Datasource copy library for JavaScript and Node.js. 
+It features any datasource to any datasource copier. This take take any datasource as input and create insert/delete/update statements that can be run on any target datasource
 
 ## Features
 
-- Supports numbers, big numbers, complex numbers, fractions, units, strings, arrays, and matrices.
-- Is compatible with JavaScript's built-in dscopy library.
+- Support reading various datasources ,  RDBMS, NoSQL, FTP, FILES
 - Contains a flexible expression parser.
 - Supports chained operations.
 - Comes with a large set of built-in functions and constants.
@@ -39,24 +35,12 @@ and supports
 var dscopy = require('dscopyjs');
 
 // functions and constants
-dscopy.round(dscopy.e, 3);            // 2.718
-dscopy.atan2(3, -3) / dscopy.pi;      // 0.75
-dscopy.log(1000, 10);               // 3
-dscopy.sqrt(-4);                    // 2i
-dscopy.pow([[-1, 2], [3, 1]], 2);   // [[7, 0], [0, 7]]
-
-// expressions
-dscopy.eval('12 / (2.3 + 0.7)');    // 4
-dscopy.eval('5.08 cm to inch');     // 2 inch
-dscopy.eval('sin(45 deg) ^ 2');     // 0.5
-dscopy.eval('9 / 3 + 2i');          // 3 + 2i
-dscopy.eval('det([-1, 2; 3, 1])');  // -7
 
 // chaining
-dscopy.chain(3)
-    .add(4)
-    .multiply(2)
-    .done(); // 14
+dscopy.from("datasource1")
+    .includeTables("test")
+    .copy("test")
+    .done(); //
 ```
 
 
