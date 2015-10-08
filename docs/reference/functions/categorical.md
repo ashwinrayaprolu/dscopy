@@ -2,4 +2,4 @@
 
 ## generator
 
-- [dscopy.generateInsertSQL(x, y)](generateInsertSQL.md)
+- [dscopy.generateInsertSQL(CopyContextObject)](generateInsertSQL.md)

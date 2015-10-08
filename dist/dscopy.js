@@ -2,9 +2,7 @@
  * dscopy.js
  * https://github.com/arayaprolu/dscopyjs
  *
- * dscopyjs is an extensive math library for JavaScript and Node.js,
- * It features real and complex numbers, units, matrices, a large set of
- * mathematical functions, and a flexible expression parser.
+ * dscopy.js is an Datasource copy library for JavaScript and Node.js. It features any datasource to any datasource copier. This take take any datasource as input and create insert/delete/update statements that can be run on any target datasource
  *
  * @version 1.0.0
  * @date    2015-10-08
@@ -2963,30 +2961,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	   *
 	   * Syntax:
 	   *
-	   *    dscopy.generateInsertSQL(x, y)
+	   *    dscopy.generateInsertSQL(CopyContextObject)
 	   *
 	   * Examples:
 	   *
-	   *    dscopy.generateInsertSQL(x, y)              // returns insert into test (id,name) values (1,'test');
+	   *    dscopy.generateInsertSQL(CopyContextObject)              // returns insert into test (id,name) values (1,'test');
 	   *
 	   *
 	   * See also:
 	   *
 	   *    generateUpdateSQL
 	   *
-	   * @param  {number | BigNumber | Fraction | Complex | Unit | Array | Matrix} x First value to add
-	   * @param  {number | BigNumber | Fraction | Complex | Unit | Array | Matrix} y Second value to add
-	   * @return {number | BigNumber | Fraction | Complex | Unit | Array | Matrix} Sum of `x` and `y`
+	   * @param  {any} CopyContextObject what containts metadata of data to be copied
+	   * @return {String} Sum of `x` and `y`
 	   */
 	  var generateInsertSQL = typed('generateInsertSQL',{
 	    // we extend the signatures of addScalar with signatures dealing with matrices
-	    'any, any': function (x, y) {
-	      // use matrix implementation
-	      return "Sample Generated SQL";
+	    'any, any': function (CopyContextObject) {
+	    	
+	    	var responseSQL = "INSERT INTO ";
+	    	var columnNameMetadata = CopyContextObject.columnNameMetadata;
+	    	responseSQL = responseSQL + CopyContextObject.entityName +" (";
+	    	for (var columnName in columnNameMetadata) {
+	    	    if (columnNameMetadata.hasOwnProperty(columnName)) {
+	    	    	responseSQL = responseSQL + columnName +","
+	    	    }
+	    	}
+	    	
+	    	responseSQL = responseSQL + ")";
+	    	return responseSQL;
 	    }
 	  });
 
-	  generateInsertSQL.toTex = '\\left(${args[0]}' + latex.operators['generateInsertSQL'] + '${args[1]}\\right)';
+	  generateInsertSQL.toTex = '\\left(${args[0]}' + latex.operators['generateInsertSQL'] + '\\right)';
 	  
 	  return generateInsertSQL;
 	}
