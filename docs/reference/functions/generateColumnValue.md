@@ -1,13 +1,12 @@
-# Function generateInsertSQL
+# Function generateColumnValue
 
-generate ASCII insert statement for informix database for given source data. 
-This can be saved in file and run multiple times 
+Generate column value in ASCII format from given datatype and value 
 
 
 ## Syntax
 
 ```js
-dscopy.generateInsertSQL(CopyContextObject)
+dscopy.generateColumnValue(MetadataObject,ColumnName,ColumnValue)
 ```
 
 ### Parameters
@@ -26,7 +25,7 @@ String | Generate SQL
 ## Examples
 
 ```js
-dscopy.generateInsertSQL(CopyContextObject)  // returns insert into test (id,name) values (1,'test');
+dscopy.generateColumnValue(MetadataObject,ColumnName,ColumnValue)  // returns insert into test (id,name) values (1,'test');
 
 ```
 

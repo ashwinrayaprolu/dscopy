@@ -5,7 +5,7 @@
  * dscopy.js is an Datasource copy library for JavaScript and Node.js. It features any datasource to any datasource copier. This take take any datasource as input and create insert/delete/update statements that can be run on any target datasource
  *
  * @version 1.0.0
- * @date    2015-10-08
+ * @date    2015-10-09
  *
  * @license
  * Copyright (C) 2013-2015 Ashwin Rayaprolu <arayaprolu@gmail.com>
@@ -2957,7 +2957,8 @@ return /******/ (function(modules) { // webpackBootstrap
 		var latex = __webpack_require__(18);
 
 	  /**
-	   * generate insert statement for informix database for given source data 
+	   * generate ASCII insert statement for informix database for given source data. 
+	   * This can be saved in file and run multiple times 
 	   *
 	   * Syntax:
 	   *
@@ -2965,30 +2966,71 @@ return /******/ (function(modules) { // webpackBootstrap
 	   *
 	   * Examples:
 	   *
-	   *    dscopy.generateInsertSQL(CopyContextObject)              // returns insert into test (id,name) values (1,'test');
+	   *    dscopy.generateInsertSQL(CopyContextObject)  // returns insert into test (id,name) values (1,'test');
 	   *
 	   *
 	   * See also:
 	   *
 	   *    generateUpdateSQL
 	   *
-	   * @param  {any} CopyContextObject what containts metadata of data to be copied
-	   * @return {String} Sum of `x` and `y`
+	   * @param  {any} CopyContextObject what contains metadata of data to be copied
+	   * @return {String} Generate SQL
 	   */
 	  var generateInsertSQL = typed('generateInsertSQL',{
 	    // we extend the signatures of addScalar with signatures dealing with matrices
-	    'any, any': function (CopyContextObject) {
-	    	
-	    	var responseSQL = "INSERT INTO ";
-	    	var columnNameMetadata = CopyContextObject.columnNameMetadata;
-	    	responseSQL = responseSQL + CopyContextObject.entityName +" (";
+	    'any': function (CopyContextObjectStr) {
+	    	var CopyContextObject = JSON.parse(CopyContextObjectStr);
+	    	var responseSQL = "";
+	    	var insertPrefix = "INSERT INTO ";
+	    	var columnNameMetadata = CopyContextObject.metadata["columnNameMetadata"];
+	    	insertPrefix = insertPrefix + CopyContextObject.metadata.entityName +" (";
 	    	for (var columnName in columnNameMetadata) {
 	    	    if (columnNameMetadata.hasOwnProperty(columnName)) {
-	    	    	responseSQL = responseSQL + columnName +","
+	    	    	insertPrefix = insertPrefix + columnName +","
 	    	    }
 	    	}
 	    	
-	    	responseSQL = responseSQL + ")";
+	    	insertPrefix = insertPrefix.substring(0,insertPrefix.length-1);
+	    	insertPrefix = insertPrefix + ") values (";
+	    	
+	    	
+	    	
+	    	// Iterate over all rows
+	    	for (var dataIndex in CopyContextObject.data) {
+	    		if (CopyContextObject.data.hasOwnProperty(dataIndex)) {
+	    			// Now Iterate over each Column
+	    			var rowObject = CopyContextObject.data[dataIndex];
+	    			var dataSQL = "";
+	    			for (var rowKey in rowObject) {
+	    				if (rowObject.hasOwnProperty(rowKey)) {
+	    					var metadataForColumn = columnNameMetadata[rowKey.toUpperCase()];
+	    					// Do Case Insensitive match
+	    					//string1.match(/AbC/i)
+	    					if(dataSQL != ""){
+	    						dataSQL = dataSQL + ","; 
+	    					}
+	    					
+	    					if(metadataForColumn.columnTypeName.match(/int/i)){
+	    						dataSQL = dataSQL+ rowObject[rowKey];
+	    					}else if(metadataForColumn.columnTypeName.match(/long/i)){
+	    						dataSQL = dataSQL+ rowObject[rowKey];
+	    					}else if(metadataForColumn.columnTypeName.match(/date/i)){
+	    						dataSQL = dataSQL+ "'"+(new Date(rowObject[rowKey])).mmddyyyy()+"'";
+	    					}else if(metadataForColumn.columnTypeName.match(/time/i)){
+	    						dataSQL = dataSQL+ "'"+(new Date(rowObject[rowKey])).mmddyyyy()+"'";
+	    					}else{
+	    						dataSQL = dataSQL+ "'"+rowObject[rowKey]+"'";
+	    					}
+	    					
+	    				}
+	    			}/// End of row Iteration
+	    			
+	    			responseSQL = responseSQL+insertPrefix + dataSQL +");<br/>";
+	    			
+	    		}
+	    	}
+	    	
+
 	    	return responseSQL;
 	    }
 	  });
